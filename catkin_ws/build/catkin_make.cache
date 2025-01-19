@@ -1,0 +1,2 @@
+robot_control
+-DCATKIN_DEVEL_PREFIX=/home/admin/Desktop/AI_Robot_Dev/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/admin/Desktop/AI_Robot_Dev/catkin_ws/install -G Unix Makefiles

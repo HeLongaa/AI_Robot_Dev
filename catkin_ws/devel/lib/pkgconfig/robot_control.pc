@@ -1,0 +1,8 @@
+prefix=/home/admin/Desktop/AI_Robot_Dev/catkin_ws/devel
+
+Name: robot_control
+Description: Description of robot_control
+Version: 0.0.0
+Cflags: 
+Libs: 
+Requires: 
