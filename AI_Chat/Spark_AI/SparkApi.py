@@ -24,7 +24,7 @@ answer = ""
 sid = ''
 
 class Ws_Param(object):
-    # 初始化
+    # Initialize
     def __init__(self, APPID, APIKey, APISecret, Spark_url):
         self.APPID = APPID
         self.APIKey = APIKey
@@ -102,7 +102,7 @@ def on_message(ws, message):
         choices = data["payload"]["choices"]
         status = choices["status"]
         content = choices["text"][0]["content"]
-        print(content,end ="")
+        # print(content,end ="")
         global answer
         answer += content
         # print(1)

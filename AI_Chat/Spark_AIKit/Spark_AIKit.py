@@ -4,11 +4,13 @@
 # @FileName: Spark_AIKit.py
 # @Software: PyCharm
 # @Blog    ：https://blog.duolaa.asia/
-
+# Tips: It needs to be deployed on the Linux platform, and other platforms cannot call the debugging interface
 import ctypes
 import os
-from ctypes import c_char_p, c_int, c_void_p, POINTER, Structure
+import re
 
+from ctypes import c_char_p, c_int, c_void_p, POINTER, Structure
+from AI_Chat.Spark_AI.Spark_AI import ai_reply, text_division
 from AI_Chat.Speech_To_Text.Speech2Text import stt
 
 # Read. Sparkconfig file
@@ -30,18 +32,32 @@ apiKey = config['apiKey'].encode('utf-8')
 apiSecret = config['apiSecret'].encode('utf-8')
 
 # Load the SDK library
-lib = ctypes.CDLL('./libs/libAIKit.so')
+lib = ctypes.CDLL('./libs/libaikit.so')
 
 # Define the callback function type
 CALLBACK_TYPE = ctypes.CFUNCTYPE(None, ctypes.c_void_p, ctypes.c_int, ctypes.c_char_p)
 
 # Define the callback function
+
 def callback(handle, event_type, event_value):
     if event_type == 1:
         print("唤醒词识别成功")
         text = stt()
         print("识别到的文本：",text)
+        text_split = text_division(text)
 
+        pattern_a = r'Q\s*=\s*"([^"]*)"'
+        pattern_b = r'D\s*=\s*"([^"]*)"'
+        match_a = re.search(pattern_a, text_split)
+        match_b = re.search(pattern_b, text_split)
+
+        if match_a:
+            print(match_a.group(1))
+            answer = ai_reply(match_a.group(1))
+            # 此处回答需要传递到文字转语音接口
+        if match_b:
+            print(match_b.group(1))
+            # 此处需要将结果传递给操作控制逻辑
 # Register the callback function
 lib.AIKIT_RegisterAbilityCallback.argtypes = [c_char_p, CALLBACK_TYPE]
 lib.AIKIT_RegisterAbilityCallback(b'awaken', CALLBACK_TYPE(callback))
@@ -128,3 +144,5 @@ lib.AIKIT_End(handle)
 
 # Deinitialize the SDK
 lib.AIKIT_Uninit()
+
+
