@@ -6,25 +6,21 @@
 # @Blog    ：https://helong.online/
 # AI接口，从服务端获取数据
 import os
-from AI_Chat.Spark_AI import SparkApi
-
-
-#<-----------------------------------------原SparkApi接口内容--------------------------------------------->
 import _thread as thread
 import base64
 import datetime
 import hashlib
 import hmac
 import json
-import time
 from urllib.parse import urlparse
 import ssl
 from datetime import datetime
 from time import mktime
 from urllib.parse import urlencode
 from wsgiref.handlers import format_date_time
-
 import websocket  # 使用websocket_client
+#<-----------------------------------------原SparkApi接口内容--------------------------------------------->
+
 answer = ""
 sid = ''
 
@@ -116,7 +112,7 @@ def on_message(ws, message):
 
 def gen_params(appid, domain,question):
     """
-    通过appid和用户的提问来生成请参数
+    通过appid和用户的提问来生成请求参数
     """
     data = {
         "header": {
@@ -152,7 +148,6 @@ def get(appid, api_key, api_secret, Spark_url,domain, question):
     ws.domain = domain
     ws.run_forever(sslopt={"cert_reqs": ssl.CERT_NONE})
 
-#<-----------------------------------------Spark_AI内容--------------------------------------------->
 
 def read_config(file_path):
     config = {}
@@ -180,6 +175,8 @@ def text_division(text_input):
     appid, api_key, api_secret = get_config()
     domain = "lite"  # Lite
     Spark_url = "wss://spark-api.xf-yun.com/v1.1/chat"  # Lite Server
+
+# The output result is anti-human...
 
     text = [
         {
@@ -229,14 +226,14 @@ def text_division(text_input):
     # user_input = input("\n我: ")
     # question = check_length(text + [get_text("user", user_input)])
     question = check_length(text + [get_text("user", text_input)])
-    SparkApi.answer = ""
-    print("星火: ", end="")
+    answer = ""
+    # print("星火: ", end="")
     try:
         get(appid, api_key, api_secret, Spark_url, domain, question)
         print("The API call is successful")
     except Exception as e:
         print(f"An error occurred: {e}")
-    return SparkApi.answer
+    return answer
 
 def ai_reply(user_input):
     # Request Massages
@@ -248,15 +245,17 @@ def ai_reply(user_input):
     ]
     # user_input = input("\nMe")
     question = check_length(text + [get_text("user", user_input)])
-    SparkApi.answer = ""
+    answer = ""
     # print("Reply: ", end="")
     try:
         get(appid, api_key, api_secret, spark_url, domain, question)
         print("The API call is successful")
     except Exception as e:
         print(f"An error occurred: {e}")
-    return SparkApi.answer
+    return answer
+
+# Debug Code
 
 if __name__ == "__main__":
-    a = ai_reply("明天的天气怎么样？今天有什么热点？")
+    a = text_division("明天的天气怎么样？检查家里")
     print(a)
