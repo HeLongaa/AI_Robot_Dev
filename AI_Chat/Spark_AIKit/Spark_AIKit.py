@@ -3,7 +3,7 @@
 # @Author  : HeLong
 # @FileName: Spark_AIKit.py
 # @Software: PyCharm
-# @Blog    ：https://blog.duolaa.asia/
+# @Blog    ：https://helong.online/
 # Tips: It needs to be deployed on the Linux platform, and other platforms cannot call the debugging interface
 import ctypes
 import os
@@ -53,8 +53,7 @@ def callback(handle, event_type, event_value):
 
         if match_a:
             print(match_a.group(1))
-            answer = ai_reply(match_a.group(1))
-            # 此处回答需要传递到文字转语音接口
+            # 此处回答需要传递到AI接口
         if match_b:
             print(match_b.group(1))
             # 此处需要将结果传递给操作控制逻辑

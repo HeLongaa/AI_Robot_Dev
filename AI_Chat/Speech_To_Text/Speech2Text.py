@@ -3,7 +3,7 @@
 # @Author  : HeLong
 # @FileName: Speech2Text.py
 # @Software: PyCharm
-# @Blog    ：https://blog.duolaa.asia/
+# @Blog    ：https://helong.online/
 
 import numpy as np
 import pyaudio
