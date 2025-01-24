@@ -2,6 +2,5 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/AI_Chat/Text_To_Speech/TTS_Server/fast-tts" vcs="Git" />
   </component>
 </project>
