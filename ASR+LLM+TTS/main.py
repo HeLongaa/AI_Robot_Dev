@@ -81,26 +81,30 @@ class Wake_Up:
 
 def Run_Talk(APP_ID, API_KEY, SECRET_KEY, file_path):
     wk = Wake_Up(APP_ID, API_KEY, SECRET_KEY, file_path)
-
     while True:
         wk.record_sound()
         chat_message = wk.voice2text()
         print("识别结果:", chat_message)
 
-        if '今天' in chat_message or '小文' in chat_message:  # 唤醒词检测
+        if '小文' in chat_message:  # 唤醒词检测
             wk.del_file()
             print("唤醒成功")
             wk.text_to_speech("我在，请问有何吩咐")
 
-            wk.record_sound()
-            query = wk.voice2text()
-            print("用户请求:", query)
+            while True:
+                wk.record_sound()
+                chat_message = wk.voice2text()
+                print("识别结果:", chat_message)
 
-            wk.text_to_speech("好的，请稍等")
-            response = Api_Run(query)  # Get Api
-            # print("AI回复:", response)
-
-            wk.text_to_speech(response)
+                if '退出' in chat_message:
+                    wk.text_to_speech("好的，已退出问答")
+                    break
+                query = wk.voice2text()
+                print("用户请求:", query)
+                # wk.text_to_speech("好的，请稍等")
+                response = Api_Run(query)  # Get Api
+                # print("AI回复:", response)
+                wk.text_to_speech(response)
             break
         else:
             continue
@@ -114,5 +118,5 @@ if __name__ == '__main__':
     AUDIO_PATH = './data/recording.wav'
 
     os.makedirs(os.path.dirname(AUDIO_PATH), exist_ok=True)
-
-    Run_Talk(APP_ID, API_KEY, SECRET_KEY, AUDIO_PATH)
+    while True:
+        Run_Talk(APP_ID, API_KEY, SECRET_KEY, AUDIO_PATH)

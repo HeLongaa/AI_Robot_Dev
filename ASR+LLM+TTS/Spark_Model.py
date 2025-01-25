@@ -21,7 +21,7 @@ Spark_url = config.SparkApi.Spark_url
 
 # Initial contextual content
 text = [
-     {"role": "system", "content": "你是一个家庭助手，你每次最多只能回复150字。"}
+     # {"role": "system", "content": "你是一个家庭助手，你每次最多只能回复150字。"}
 ]
 
 
@@ -57,7 +57,8 @@ def Api_Run(input):
         print("星火:", end="")
         SparkApi.main(appid, api_key, api_secret, Spark_url, domain, question)
         # print(SparkApi.answer)
-        output = getText("assistant", SparkApi.answer)
-        return output[1]['content']
+        # output = getText("assistant", SparkApi.answer)
+        # return output[1]['content']
+        return SparkApi.answer
     except Exception as e:
         print(e)

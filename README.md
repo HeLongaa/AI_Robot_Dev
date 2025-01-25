@@ -9,13 +9,11 @@ Develop Environment:
     ROS For Debian
         
 ---
-GPIO interface definition table:
+1. Intelligent chat function (ASR+LLM+TTS implementation)
 
-**G12** AND **G16** For Infrared sensor
-**G20** AND **G21** For Ultrasonic sensors
-PWM0 on the shield board  For Servo A
+   Access to the iFLYTEK Xinghuo intelligent large model and Baidu speech recognition model
+    (castrated models such as 7b can also be deployed locally, taking into account the actual simulation platform performance), to achieve voice wake-up, intelligent multi-round dialogue, and semantic division
+    
+    ![img1](./ASR+LLM+TTS/Images/img1.png)
 
-The left motor has a forward pin of **22**, 
-a back pin of **27**, and an enable pin of **18**, 
-while the right motor has a forward pin of **25**, 
-a backward pin of **24**, and an enable pin of **23**
+2. 
