@@ -14,6 +14,6 @@ Develop Environment:
    Access to the iFLYTEK Xinghuo intelligent large model and Baidu speech recognition model
     (castrated models such as 7b can also be deployed locally, taking into account the actual simulation platform performance), to achieve voice wake-up, intelligent multi-round dialogue, and semantic division
     
-    ![img1](./ASR+LLM+TTS/Images/img1.png)
+    ![img1](/ASR+LLM+TTS/Images/img1.png)
 
 2. 
