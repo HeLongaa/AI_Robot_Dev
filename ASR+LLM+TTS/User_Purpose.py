@@ -1,29 +1,23 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2025/1/25 00:49
+# @Time    : 2025/1/25 21:06
 # @Author  : HeLong
-# @FileName: Spark_Model.py
+# @FileName: User_Purpose.py
 # @Software: PyCharm
 # @Blog    : https://helong.online/
 
-# coding: utf-8
-"""
-# Call the Spark model
-"""
-import SparkApi
 import config
-
+import SparkApi
 
 appid = config.SparkApi.appid
 api_secret = config.SparkApi.api_secret
 api_key = config.SparkApi.api_key
+
 domain = config.SparkApi.domain
 Spark_url = config.SparkApi.Spark_url
 
-# Initial contextual content
 text = [
-     {"role": "system", "content": "你是一个家庭助手，你每次最多只能回复150字。"}
+    {"role":"system", "content":"你是一个语义分割模型，你需要区别我给你的话是操作还是问答，如果是操作就输出Do，问答输出Qu"}
 ]
-
 
 def getText(role, content):
     jsoncon = {}
@@ -48,7 +42,7 @@ def checklen(text):
     return text
 
 
-def Api_Run(input):
+def user_purpose(input):
     # 这里是运行主函数
     try:
         question = checklen(getText("user", input))

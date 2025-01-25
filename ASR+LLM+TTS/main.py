@@ -13,6 +13,7 @@ import os
 import pyttsx3
 from Spark_Model import Api_Run
 import config
+from User_Purpose import user_purpose
 
 class Wake_Up:
     def __init__(self, APP_ID, API_KEY, SECRET_KEY, file_path):
@@ -95,7 +96,12 @@ def Run_Talk(APP_ID, API_KEY, SECRET_KEY, file_path):
                 wk.record_sound()
                 chat_message = wk.voice2text()
                 print("识别结果:", chat_message)
-
+                purpose = user_purpose(chat_message)
+                print(purpose)
+                if purpose != 'Qu':
+                    # 机器人操作
+                    print("操作")
+                    break
                 if '退出' in chat_message:
                     wk.text_to_speech("好的，已退出问答")
                     break
