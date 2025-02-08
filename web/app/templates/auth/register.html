@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}注册{% endblock %}
+{% block content %}
+<h2>注册</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.username.label }}
+        {{ form.username(class="form-control") }}
+    </div>
+    <div>
+        {{ form.email.label }}
+        {{ form.email(class="form-control") }}
+    </div>
+    <div>
+        {{ form.password.label }}
+        {{ form.password(class="form-control") }}
+    </div>
+    <div>
+        {{ form.password2.label }}
+        {{ form.password2(class="form-control") }}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+<p>已有账号？<a href="{{ url_for('auth.login') }}">立即登录</a></p>
+{% endblock %}

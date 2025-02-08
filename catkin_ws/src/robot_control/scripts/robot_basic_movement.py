@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # -*- coding: utf-8 -*-
 # @Time    : 2025/1/19 10:45
 # @Author  : HeLong
@@ -20,10 +22,10 @@ class BasicRobotMovement:
     def __init__(self, speed=0.3, turn_speed=0.3, wheelbase=0.12, track_width=0.11):
         """
         初始化函数
-        :param speed: 前进后退速度，默认0.5
-        :param turn_speed: 转弯速度，默认0.3
-        :param wheelbase: 前后轮距离，默认0.12米
-        :param track_width: 左前到右前的距离，默认0.11米
+        :param speed: 前进后退速度，0.5
+        :param turn_speed: 转弯速度，0.3
+        :param wheelbase: 前后轮距离，0.12米
+        :param track_width: 左前到右前的距离，0.11米
         """
         self.speed = speed
         self.turn_speed = turn_speed

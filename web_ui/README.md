@@ -1,3 +1,0 @@
-# A simple data dashboard
-
-The data kanban in operation is only structured, and the content is added later......
